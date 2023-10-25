@@ -1,16 +1,12 @@
 # calculator-springboot
-> # 1. How to Run:-
- 
-   i]Take Clone of calculator-springboot repo or download directly.
-   
-   ii]Check class which have main() method.
-   
-   iii]Run this class accordingly on IDE.
+> # 1. How to Run:
+    i]Take Clone of calculator-springboot repo or download directly.<br>
+    ii]Check class which have main() method.<br>
+    iii]Run this class accordingly on IDE.<br>
 
-> ## 2.You can test this Api's while using Postman or paste below url's on Chrome(any browser).
-  <br>
-  
-> ### 3. API urls of Calculator:-
+> 2.**You can test this Api's while using Postman or paste below url's on Chrome(any browser)**.
+
+> 3. **API urls of Calculator**:-
    
 i]**Request**: GET /calculatorapi/v1/addition?number1=12&number2=15 <br>
 **Response**: { "answer": 27, "detail": "12 + 15 = 27" } 
