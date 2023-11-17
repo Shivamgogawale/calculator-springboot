@@ -3,7 +3,6 @@ package com.calculator.request;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class MinMaxRequest {
 

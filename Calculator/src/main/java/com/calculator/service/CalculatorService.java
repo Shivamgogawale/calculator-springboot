@@ -2,22 +2,25 @@ package com.calculator.service;
 
 import org.springframework.stereotype.Component;
 
+import com.calculator.request.CalculatorRequest;
+import com.calculator.response.CalculatorResponse;
+
 @Component
 public interface CalculatorService {
 	
-	public double getAddition(double number1,double number2);
+	public CalculatorResponse getAddition(CalculatorRequest calculatorRequest);
 	
-	public double getSubstraction(double number1,double number2);
+	public CalculatorResponse getSubstraction(CalculatorRequest calculatorRequest);
 
-	public double getDivision(double number1,double number2);
+	public CalculatorResponse getDivision(CalculatorRequest calculatorRequest);
 
-	public double getMultiplication(double number1,double number2);
+	public CalculatorResponse getMultiplication(CalculatorRequest calculatorRequest);
 
-	public double getSquare(String number);
+	public CalculatorResponse getSquare(double number);
 
-	public double getSquareRoot(String number);
+	public CalculatorResponse getSquareRoot(double number);
 
-	public double getFactorial(String number);
+	public CalculatorResponse getFactorial(double number);
 
 
 }
