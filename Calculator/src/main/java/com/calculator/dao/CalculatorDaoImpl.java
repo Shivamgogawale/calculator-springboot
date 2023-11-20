@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.calculator.jpa.CalculatorData;
+import com.calculator.jpa.MinMaxData;
 import com.calculator.response.CalculatorResponse;
+import com.calculator.response.MinMaxResponse;
 import com.calculator.transformer.CalculatorTransformer;
+import com.calculator.transformer.MinMaxTransformer;
 import com.calculator.util.Constants;
 
 @Repository
@@ -20,6 +23,12 @@ public class CalculatorDaoImpl{
 	
 	@Autowired
 	CalculatorTransformer calculatorTransformer;
+	
+	@Autowired
+	MinMaxTransformer minMaxTransformer;
+	
+	@Autowired
+	MinMaxRepository maxRepository;
 	
 	private static final Logger logger=LoggerFactory.getLogger(CalculatorDaoImpl.class);
 
@@ -47,6 +56,29 @@ public class CalculatorDaoImpl{
 			logger.error(e.getMessage());
 		}
 		logger.info("CalculatorDaoImpl.saveData() end");
+		logger.info(Constants.TIME_ELAPSED,startTime-System.currentTimeMillis());
+		return transformToObject;		
+	}
+	
+	public MinMaxResponse saveMinMax(MinMaxData minMaxData)
+	{
+		long startTime=System.currentTimeMillis();
+		MinMaxData save =null;
+		logger.info("CalculatorDaoImpl.saveMinMax() start");
+		logger.info(Constants.TIME_ELAPSED,startTime);
+		MinMaxResponse transformToObject = null;
+		try{
+			minMaxData.setTimestamp(LocalDateTime.now());
+			save = maxRepository.save(minMaxData);
+			if(save != null)
+			{
+				transformToObject = minMaxTransformer.transformToObject(minMaxData);
+			}
+		}
+		catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		logger.info("CalculatorDaoImpl.saveMinMax() end");
 		logger.info(Constants.TIME_ELAPSED,startTime-System.currentTimeMillis());
 		return transformToObject;		
 	}

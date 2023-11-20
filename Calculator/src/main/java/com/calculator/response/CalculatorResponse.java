@@ -1,6 +1,13 @@
 package com.calculator.response;
 
-public class CalculatorResponse {
+import java.io.Serializable;
+
+public class CalculatorResponse implements  Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	String answer;
 	

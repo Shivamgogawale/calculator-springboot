@@ -1,6 +1,13 @@
 package com.calculator.response;
 
-public class MinMaxResponse {
+import java.io.Serializable;
+
+public class MinMaxResponse implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	int min;
 	

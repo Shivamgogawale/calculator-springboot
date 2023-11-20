@@ -146,18 +146,16 @@ public class CalculatorController {
 		
 		@PostMapping(value = "/min-max")
 		@ApiOperation(value = "Get Minimum Maximum",notes = "This api uses for getting maximum and minimum numbers")
-		public MinMaxResponse getminmax(@RequestBody MinMaxRequest list)
+		public MinMaxResponse getminmax(@RequestBody MinMaxRequest minMaxRequest)
 		{
+			MinMaxResponse minMaxResponse;
 			long startTime=System.currentTimeMillis();
 			logger.info("CalculatorController.getAddition() start ");
 			logger.info(Constants.TIME_ELAPSED,startTime);
-			List<Integer> numbers=list.getList();
-			MinMaxResponse minmaxres=new MinMaxResponse();
-			minmaxres.setMin(numbers.stream().sorted().findFirst().get());
-			minmaxres.setMax(numbers.stream().max(Integer::compareTo).orElse(null));
+			minMaxResponse = calculatorServiceImpl.getMinMax(minMaxRequest);
 			logger.info("CalculatorController.getAddition() End");
 			logger.info(Constants.TIME_ELAPSED,System.currentTimeMillis()-startTime);
-			return minmaxres;
+			return minMaxResponse;
 		}
 		
 		public CalculatorRequest prepareRequest(double number1,double number2)
