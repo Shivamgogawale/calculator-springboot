@@ -147,7 +147,7 @@ public class CalculatorServiceImpl implements CalculatorService {
 	 * @return CalculatorResponse
 	 */
 	@Override
-	@Cacheable(value = "calculatorCache", key = "'square:' + #number", unless = "#result == null")
+	@Cacheable(value = "calculatorCache", key = "'squareroot:' + #number", unless = "#result == null")
 	public CalculatorResponse getSquareRoot(double number) {
 		CalculatorResponse calculatorResponse;
 		long startTime = System.currentTimeMillis();
@@ -169,14 +169,14 @@ public class CalculatorServiceImpl implements CalculatorService {
 	 * @return CalculatorResponse
 	 */
 	@Override
-	@Cacheable(value = "calculatorCache", key = "'square:' + #number", unless = "#result == null")
+	@Cacheable(value = "calculatorCache", key = "'factorial:' + #number", unless = "#result == null")
 	public CalculatorResponse getFactorial(double number) {
 		CalculatorResponse calculatorResponse;
 		long startTime = System.currentTimeMillis();
 		logger.info("CalculatorServiceImpl.getFactorial() start ");
 		logger.info(Constants.TIME_ELAPSED, startTime);
-		double fact = 1;
-		for (double i = 1; i < number; i++) {
+		int fact = 1;
+		for (int i = 1; i <number ; i++) {
 			fact = fact * i;
 		}
 		CalculatorData calculatorData = prepareRequestForOtherOperations(number, Constants.Factorial, fact);
@@ -241,7 +241,7 @@ public class CalculatorServiceImpl implements CalculatorService {
 		numbers.sort(Comparator.naturalOrder());
 		MinMaxData minMaxData=new MinMaxData();
 		minMaxData.setMinimum(numbers.get(0));
-		minMaxData.setMaximum(numbers.lastIndexOf(numbers.size()));
+		minMaxData.setMaximum(numbers.get(numbers.size()-1));
 		return minMaxData;
 	}
 	

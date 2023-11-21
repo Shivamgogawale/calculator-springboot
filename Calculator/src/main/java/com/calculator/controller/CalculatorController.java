@@ -1,7 +1,5 @@
 package com.calculator.controller;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +34,7 @@ public class CalculatorController {
 	 
 	
 	@Autowired
-	CalculatorServiceImpl calculatorServiceImpl;
+	private CalculatorServiceImpl calculatorServiceImpl;
 	 
 	
 		@GetMapping(value = "/addition")
@@ -122,10 +120,10 @@ public class CalculatorController {
 		{
 			CalculatorResponse calculatorResponse;
 			long startTime=System.currentTimeMillis();
-			logger.info("CalculatorController.getAddition() start ");
+			logger.info("CalculatorController.getsquareroot() start ");
 			logger.info(Constants.TIME_ELAPSED,startTime);
 			calculatorResponse=calculatorServiceImpl.getSquareRoot(number);
-			logger.info("CalculatorController.getAddition() End");
+			logger.info("CalculatorController.getsquareroot() End");
 			logger.info(Constants.TIME_ELAPSED,System.currentTimeMillis()-startTime);
 			return calculatorResponse;
 		}
@@ -136,10 +134,12 @@ public class CalculatorController {
 		{
 			CalculatorResponse calculatorResponse;
 			long startTime=System.currentTimeMillis();
-			logger.info("CalculatorController.getAddition() start ");
+			logger.info("CalculatorController.getFactorial() start ");
 			logger.info(Constants.TIME_ELAPSED,startTime);
+			
 			calculatorResponse= calculatorServiceImpl.getFactorial(number);
-			logger.info("CalculatorController.getAddition() End");
+			
+			logger.info("CalculatorController.getFactorial() End");
 			logger.info(Constants.TIME_ELAPSED,System.currentTimeMillis()-startTime);
 			return calculatorResponse;
 		}
@@ -150,10 +150,10 @@ public class CalculatorController {
 		{
 			MinMaxResponse minMaxResponse;
 			long startTime=System.currentTimeMillis();
-			logger.info("CalculatorController.getAddition() start ");
+			logger.info("CalculatorController.getminmax() start ");
 			logger.info(Constants.TIME_ELAPSED,startTime);
 			minMaxResponse = calculatorServiceImpl.getMinMax(minMaxRequest);
-			logger.info("CalculatorController.getAddition() End");
+			logger.info("CalculatorController.getminmax() End");
 			logger.info(Constants.TIME_ELAPSED,System.currentTimeMillis()-startTime);
 			return minMaxResponse;
 		}

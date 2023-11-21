@@ -33,7 +33,7 @@ public class CalculatorDaoImpl{
 	private static final Logger logger=LoggerFactory.getLogger(CalculatorDaoImpl.class);
 
 	
-	/**Save/insert data in Database
+	/**Save or insert data in Database
 	 * @param calculatorData
 	 * @return CalculatorResponse
 	 */
@@ -60,6 +60,11 @@ public class CalculatorDaoImpl{
 		return transformToObject;		
 	}
 	
+	/**
+	 * save MinMax data in database
+	 * @param minMaxData
+	 * @return MinMaxResponse
+	 */
 	public MinMaxResponse saveMinMax(MinMaxData minMaxData)
 	{
 		long startTime=System.currentTimeMillis();

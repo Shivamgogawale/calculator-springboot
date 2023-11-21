@@ -29,7 +29,7 @@ public class CalculatorTransformer {
 		if(calculatorData.getOperation().equals(Constants.Multiplication))
 			return Util.getFormattedString(calculatorData.getNumber1())+ " * "+Util.getFormattedString(calculatorData.getNumber2())+" = "+Util.getFormattedString(calculatorData.getResult());
 		if(calculatorData.getOperation().equals(Constants.Factorial))
-			return Util.getFormattedString(calculatorData.getNumber1())+ " ! "+" = "+Util.getFormattedString(calculatorData.getResult());
+			return Constants.Factorial+" of " +Util.getFormattedString(calculatorData.getNumber1())+ " ! "+" = "+Util.getFormattedString(calculatorData.getResult());
 		if(calculatorData.getOperation().equals(Constants.Square))
 			return Constants.Square + " of "+Util.getFormattedString(calculatorData.getNumber1())+" = "+Util.getFormattedString(calculatorData.getResult());
 		if(calculatorData.getOperation().equals(Constants.Squareroot))
