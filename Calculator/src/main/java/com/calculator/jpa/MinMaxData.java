@@ -1,6 +1,7 @@
 package com.calculator.jpa;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,12 +11,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "minmaxData")
+@Table(name = "minmaxdata")
 public class MinMaxData {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@Column(name="request")
+	private List request;
 	
 	@Column(name = "minimum")
 	private Integer Minimum;
@@ -58,11 +62,21 @@ public class MinMaxData {
 		this.timestamp = timestamp;
 	}
 
+	public List getRequest() {
+		return request;
+	}
+
+	public void setRequest(List request) {
+		this.request = request;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("MinMaxData [id=");
 		builder.append(id);
+		builder.append(", request=");
+		builder.append(request);
 		builder.append(", Minimum=");
 		builder.append(Minimum);
 		builder.append(", Maximum=");

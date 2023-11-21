@@ -40,16 +40,16 @@ public class CalculatorDaoImpl{
 	public CalculatorResponse saveData(CalculatorData calculatorData)
 	{
 		long startTime=System.currentTimeMillis();
-		CalculatorData save =null;
+		CalculatorData response =null;
 		CalculatorResponse transformToObject=null;
 		logger.info("CalculatorDaoImpl.saveData() start");
 		logger.info(Constants.TIME_ELAPSED,startTime);
 		try{
 			calculatorData.setTimeStamp(LocalDateTime.now());
-			save = calculatorRepository.save(calculatorData);
-			if(save != null)
+			response = calculatorRepository.save(calculatorData);
+			if(response != null)
 			{
-				transformToObject = calculatorTransformer.transformToObject(calculatorData);
+				transformToObject = calculatorTransformer.transformToObject(response);
 			}
 		}
 		catch (Exception e) {
@@ -68,16 +68,16 @@ public class CalculatorDaoImpl{
 	public MinMaxResponse saveMinMax(MinMaxData minMaxData)
 	{
 		long startTime=System.currentTimeMillis();
-		MinMaxData save =null;
+		MinMaxData response =null;
 		logger.info("CalculatorDaoImpl.saveMinMax() start");
 		logger.info(Constants.TIME_ELAPSED,startTime);
 		MinMaxResponse transformToObject = null;
 		try{
 			minMaxData.setTimestamp(LocalDateTime.now());
-			save = maxRepository.save(minMaxData);
-			if(save != null)
+			response = maxRepository.save(minMaxData);
+			if(response != null)
 			{
-				transformToObject = minMaxTransformer.transformToObject(minMaxData);
+				transformToObject = minMaxTransformer.transformToObject(response);
 			}
 		}
 		catch (Exception e) {
