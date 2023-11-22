@@ -240,7 +240,6 @@ public class CalculatorServiceImpl implements CalculatorService {
 		List<Integer> numbers=minMaxRequest.getList();
 		numbers.sort(Comparator.naturalOrder());
 		MinMaxData minMaxData=new MinMaxData();
-		minMaxData.setRequest(minMaxRequest.getList());
 		minMaxData.setMinimum(numbers.get(0));
 		minMaxData.setMaximum(numbers.get(numbers.size()-1));
 		return minMaxData;
