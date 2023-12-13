@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+
+@Data
 @Entity
 @Table(name = "calculatordata")
 public class CalculatorData {
@@ -31,73 +34,5 @@ public class CalculatorData {
 	
 	@Column(name = "timestamp")
 	private LocalDateTime timeStamp;
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public double getNumber1() {
-		return number1;
-	}
-
-	public void setNumber1(double number1) {
-		this.number1 = number1;
-	}
-
-	public double getNumber2() {
-		return number2;
-	}
-
-	public void setNumber2(double number2) {
-		this.number2 = number2;
-	}
-
-	public String getOperation() {
-		return operation;
-	}
-
-	public void setOperation(String operation) {
-		this.operation = operation;
-	}
-
-	public double getResult() {
-		return result;
-	}
-
-	public void setResult(double result) {
-		this.result = result;
-	}
-
-	public LocalDateTime getTimeStamp() {
-		return timeStamp;
-	}
-
-	public void setTimeStamp(LocalDateTime timeStamp) {
-		this.timeStamp = timeStamp;
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("CalculatorData [id=");
-		builder.append(id);
-		builder.append(", number1=");
-		builder.append(number1);
-		builder.append(", number2=");
-		builder.append(number2);
-		builder.append(", operation=");
-		builder.append(operation);
-		builder.append(", result=");
-		builder.append(result);
-		builder.append(", timeStamp=");
-		builder.append(timeStamp);
-		builder.append("]");
-		return builder.toString();
-	}
-	
 	
 }

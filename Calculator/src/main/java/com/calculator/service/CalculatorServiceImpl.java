@@ -3,8 +3,6 @@ package com.calculator.service;
 import java.util.Comparator;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -17,12 +15,12 @@ import com.calculator.request.MinMaxRequest;
 import com.calculator.response.CalculatorResponse;
 import com.calculator.response.MinMaxResponse;
 import com.calculator.util.Constants;
-import com.mysql.cj.x.protobuf.MysqlxPrepare.Prepare;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class CalculatorServiceImpl implements CalculatorService {
-
-	private static final Logger logger = LoggerFactory.getLogger(CalculatorServiceImpl.class);
 
 	@Autowired
 	public CalculatorDaoImpl calculatorDaoImpl;
@@ -39,13 +37,13 @@ public class CalculatorServiceImpl implements CalculatorService {
 	public CalculatorResponse getAddition(CalculatorRequest calculatorRequest) {
 		CalculatorResponse calculatorResponse;
 		long startTime = System.currentTimeMillis();
-		logger.info("CalculatorServiceImpl.getAddition() start ");
-		logger.info(Constants.TIME_ELAPSED, startTime);
+		log.info("CalculatorServiceImpl.getAddition() start ");
+		log.info(Constants.TIME_ELAPSED, startTime);
 		double result = calculatorRequest.getNumber1() + calculatorRequest.getNumber2();
 		CalculatorData calculatorData = prepareRequest(calculatorRequest, Constants.Addition, result);
 		calculatorResponse = calculatorDaoImpl.saveData(calculatorData);
-		logger.info("CalculatorServiceImpl.getAddition() end ");
-		logger.info(Constants.TIME_ELAPSED, startTime - System.currentTimeMillis());
+		log.info("CalculatorServiceImpl.getAddition() end ");
+		log.info(Constants.TIME_ELAPSED, startTime - System.currentTimeMillis());
 		return calculatorResponse;
 	}
 
@@ -60,13 +58,13 @@ public class CalculatorServiceImpl implements CalculatorService {
 	public CalculatorResponse getSubstraction(CalculatorRequest calculatorRequest) {
 		CalculatorResponse calculatorResponse;
 		long startTime = System.currentTimeMillis();
-		logger.info("CalculatorServiceImpl.getSubstraction() start ");
-		logger.info(Constants.TIME_ELAPSED, startTime);
+		log.info("CalculatorServiceImpl.getSubstraction() start ");
+		log.info(Constants.TIME_ELAPSED, startTime);
 		double result = calculatorRequest.getNumber1() - calculatorRequest.getNumber2();
 		CalculatorData calculatorData = prepareRequest(calculatorRequest, Constants.Substraction, result);
 		calculatorResponse = calculatorDaoImpl.saveData(calculatorData);
-		logger.info("CalculatorServiceImpl.getSubstraction() end ");
-		logger.info(Constants.TIME_ELAPSED, startTime - System.currentTimeMillis());
+		log.info("CalculatorServiceImpl.getSubstraction() end ");
+		log.info(Constants.TIME_ELAPSED, startTime - System.currentTimeMillis());
 		return calculatorResponse;
 	}
 
@@ -81,10 +79,10 @@ public class CalculatorServiceImpl implements CalculatorService {
 	public CalculatorResponse getDivision(CalculatorRequest calculatorRequest) {
 		CalculatorResponse calculatorResponse = new CalculatorResponse();
 		long startTime = System.currentTimeMillis();
-		logger.info("CalculatorServiceImpl.getDivision() start ");
-		logger.info(Constants.TIME_ELAPSED, startTime);
+		log.info("CalculatorServiceImpl.getDivision() start ");
+		log.info(Constants.TIME_ELAPSED, startTime);
 		if (calculatorRequest.getNumber2() == 0) {
-			logger.error("Division By Zero is not allowed");
+			log.error("Division By Zero is not allowed");
 			calculatorResponse.setAnswer("undefined");
 			calculatorResponse.setDetails("Division by zero is Not Allowed");
 			return calculatorResponse;
@@ -92,8 +90,8 @@ public class CalculatorServiceImpl implements CalculatorService {
 		double result = calculatorRequest.getNumber1() / calculatorRequest.getNumber2();
 		CalculatorData calculatorData = prepareRequest(calculatorRequest, Constants.Division, result);
 		calculatorResponse = calculatorDaoImpl.saveData(calculatorData);
-		logger.info("CalculatorServiceImpl.getDivision() end ");
-		logger.info(Constants.TIME_ELAPSED, startTime - System.currentTimeMillis());
+		log.info("CalculatorServiceImpl.getDivision() end ");
+		log.info(Constants.TIME_ELAPSED, startTime - System.currentTimeMillis());
 		return calculatorResponse;
 	}
 
@@ -108,13 +106,13 @@ public class CalculatorServiceImpl implements CalculatorService {
 	public CalculatorResponse getMultiplication(CalculatorRequest calculatorRequest) {
 		CalculatorResponse calculatorResponse;
 		long startTime = System.currentTimeMillis();
-		logger.info("CalculatorServiceImpl.getMultiplication() start ");
-		logger.info(Constants.TIME_ELAPSED, startTime);
+		log.info("CalculatorServiceImpl.getMultiplication() start ");
+		log.info(Constants.TIME_ELAPSED, startTime);
 		double result = calculatorRequest.getNumber1() * calculatorRequest.getNumber2();
 		CalculatorData calculatorData = prepareRequest(calculatorRequest, Constants.Multiplication, result);
 		calculatorResponse = calculatorDaoImpl.saveData(calculatorData);
-		logger.info("CalculatorServiceImpl.getMultiplication() end ");
-		logger.info(Constants.TIME_ELAPSED, startTime - System.currentTimeMillis());
+		log.info("CalculatorServiceImpl.getMultiplication() end ");
+		log.info(Constants.TIME_ELAPSED, startTime - System.currentTimeMillis());
 		return calculatorResponse;
 	}
 
@@ -129,13 +127,13 @@ public class CalculatorServiceImpl implements CalculatorService {
 	public CalculatorResponse getSquare(double number) {
 		CalculatorResponse calculatorResponse;
 		long startTime = System.currentTimeMillis();
-		logger.info("CalculatorServiceImpl.getSquare() start ");
-		logger.info(Constants.TIME_ELAPSED, startTime);
+		log.info("CalculatorServiceImpl.getSquare() start ");
+		log.info(Constants.TIME_ELAPSED, startTime);
 		double result = number * number;
 		CalculatorData calculatorData = prepareRequestForOtherOperations(number, Constants.Square, result);
 		calculatorResponse = calculatorDaoImpl.saveData(calculatorData);
-		logger.info("CalculatorServiceImpl.getSquare() end ");
-		logger.info(Constants.TIME_ELAPSED, startTime - System.currentTimeMillis());
+		log.info("CalculatorServiceImpl.getSquare() end ");
+		log.info(Constants.TIME_ELAPSED, startTime - System.currentTimeMillis());
 		return calculatorResponse;
 
 	}
@@ -151,13 +149,13 @@ public class CalculatorServiceImpl implements CalculatorService {
 	public CalculatorResponse getSquareRoot(double number) {
 		CalculatorResponse calculatorResponse;
 		long startTime = System.currentTimeMillis();
-		logger.info("CalculatorServiceImpl.getSquareRoot() start ");
-		logger.info(Constants.TIME_ELAPSED, startTime);
+		log.info("CalculatorServiceImpl.getSquareRoot() start ");
+		log.info(Constants.TIME_ELAPSED, startTime);
 		double result = Math.sqrt(number);
 		CalculatorData calculatorData = prepareRequestForOtherOperations(number, Constants.Squareroot, result);
 		calculatorResponse = calculatorDaoImpl.saveData(calculatorData);
-		logger.info("CalculatorServiceImpl.getSquareRoot() end ");
-		logger.info(Constants.TIME_ELAPSED, startTime - System.currentTimeMillis());
+		log.info("CalculatorServiceImpl.getSquareRoot() end ");
+		log.info(Constants.TIME_ELAPSED, startTime - System.currentTimeMillis());
 		return calculatorResponse;
 
 	}
@@ -173,16 +171,16 @@ public class CalculatorServiceImpl implements CalculatorService {
 	public CalculatorResponse getFactorial(double number) {
 		CalculatorResponse calculatorResponse;
 		long startTime = System.currentTimeMillis();
-		logger.info("CalculatorServiceImpl.getFactorial() start ");
-		logger.info(Constants.TIME_ELAPSED, startTime);
+		log.info("CalculatorServiceImpl.getFactorial() start ");
+		log.info(Constants.TIME_ELAPSED, startTime);
 		int fact = 1;
 		for (int i = 1; i <number ; i++) {
 			fact = fact * i;
 		}
 		CalculatorData calculatorData = prepareRequestForOtherOperations(number, Constants.Factorial, fact);
 		calculatorResponse = calculatorDaoImpl.saveData(calculatorData);
-		logger.info("CalculatorServiceImpl.getFactorial() end ");
-		logger.info(Constants.TIME_ELAPSED, startTime - System.currentTimeMillis());
+		log.info("CalculatorServiceImpl.getFactorial() end ");
+		log.info(Constants.TIME_ELAPSED, startTime - System.currentTimeMillis());
 		return calculatorResponse;
 	}
 	
@@ -190,12 +188,12 @@ public class CalculatorServiceImpl implements CalculatorService {
 	@Cacheable(value = "minMaxCache", key = "'minmax:' + #minMaxRequest.getList()", unless = "#result == null")
 	public MinMaxResponse getMinMax(MinMaxRequest minMaxRequest) {
 		long startTime = System.currentTimeMillis();
-		logger.info("CalculatorServiceImpl.getMinMax() start ");
-		logger.info(Constants.TIME_ELAPSED, startTime);
+		log.info("CalculatorServiceImpl.getMinMax() start ");
+		log.info(Constants.TIME_ELAPSED, startTime);
 		MinMaxData prepareRequestForMinMax = prepareRequestForMinMax(minMaxRequest);
 		MinMaxResponse minmaxres = calculatorDaoImpl.saveMinMax(prepareRequestForMinMax);
-		logger.info("CalculatorServiceImpl.getMinMax() end ");
-		logger.info(Constants.TIME_ELAPSED, startTime - System.currentTimeMillis());
+		log.info("CalculatorServiceImpl.getMinMax() end ");
+		log.info(Constants.TIME_ELAPSED, startTime - System.currentTimeMillis());
 		return minmaxres;
 	}
 	

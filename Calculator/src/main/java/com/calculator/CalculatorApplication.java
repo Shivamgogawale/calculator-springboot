@@ -33,14 +33,12 @@ public class CalculatorApplication {
 				.build();
 	}
 	
+	
 	private ApiInfo apiInfo() {
-	    return new ApiInfoBuilder()
-	    		 .title("Calculator Api")
-	                .description("Calculator Services Documentation for API developers")
-	                .termsOfServiceUrl("http://localhost:8080/")
-	                .license("Calculator")
-	                .licenseUrl("http://Calculator/LICENSE")
-	                .version("1.0")
-	                .build();	
+		return new ApiInfoBuilder().title("Calculator Api")
+				.description("Calculator Services Documentation for API developers")
+				.termsOfServiceUrl("http://localhost:8080/").license("Calculator")
+				.licenseUrl("http://Calculator/LICENSE").version("1.0").build();
 	}
+	 
 }

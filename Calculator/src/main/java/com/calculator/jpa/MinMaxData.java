@@ -13,6 +13,9 @@ import javax.persistence.Table;
 
 import com.calculator.request.MinMaxRequest;
 
+import lombok.Data;
+
+@Data
 @Entity
 @Table(name = "minmaxdata")
 public class MinMaxData {
@@ -30,59 +33,5 @@ public class MinMaxData {
 	
 	@Column(name = "timestamp")
 	private LocalDateTime timestamp;
-	
-
-
-
-	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public Integer getMinimum() {
-		return Minimum;
-	}
-
-	public void setMinimum(Integer minimum) {
-		Minimum = minimum;
-	}
-
-	public Integer getMaximum() {
-		return Maximum;
-	}
-
-	public void setMaximum(Integer maximum) {
-		Maximum = maximum;
-	}
-
-	public LocalDateTime getTimestamp() {
-		return timestamp;
-	}
-
-	public void setTimestamp(LocalDateTime timestamp) {
-		this.timestamp = timestamp;
-	}
-
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("MinMaxData [id=");
-		builder.append(id);
-		builder.append(", Minimum=");
-		builder.append(Minimum);
-		builder.append(", Maximum=");
-		builder.append(Maximum);
-		builder.append(", timestamp=");
-		builder.append(timestamp);
-		builder.append("]");
-		return builder.toString();
-	}
-	
-	
 	
 }

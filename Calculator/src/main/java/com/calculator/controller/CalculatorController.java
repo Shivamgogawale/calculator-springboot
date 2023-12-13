@@ -1,7 +1,5 @@
 package com.calculator.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,16 +20,14 @@ import com.calculator.util.Constants;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.extern.slf4j.Slf4j;
 
-
+@Slf4j
 @RestController
 @RequestMapping(value = "/calculatorapi/v1")
 @ComponentScan(basePackages = "com.calculator")
 @Api(value = "/calculatorapi")
-public class CalculatorController {
-	
-	private static final Logger logger=LoggerFactory.getLogger(CalculatorController.class);
-	 
+public class CalculatorController {	 
 	
 	@Autowired
 	private CalculatorServiceImpl calculatorServiceImpl;
@@ -44,12 +40,12 @@ public class CalculatorController {
 		{
 			CalculatorResponse calculatorResponse;
 			long startTime=System.currentTimeMillis();
-			logger.info("CalculatorController.getAddition() start ");
-			logger.info(Constants.TIME_ELAPSED,startTime);
+			log.info("CalculatorController.getAddition() start ");
+			log.info(Constants.TIME_ELAPSED,startTime);
 			CalculatorRequest calculatorRequest=prepareRequest(number1, number2);
 			calculatorResponse  = calculatorServiceImpl.getAddition(calculatorRequest);
-			logger.info("CalculatorController.getAddition() End");
-			logger.info(Constants.TIME_ELAPSED,System.currentTimeMillis()-startTime);
+			log.info("CalculatorController.getAddition() End");
+			log.info(Constants.TIME_ELAPSED,System.currentTimeMillis()-startTime);
 			return calculatorResponse;
 		}
 		
@@ -60,12 +56,12 @@ public class CalculatorController {
 		{
 			CalculatorResponse calculatorResponse;
 			long startTime=System.currentTimeMillis();
-			logger.info("CalculatorController.getSubstraction() start ");
-			logger.info(Constants.TIME_ELAPSED,startTime);
+			log.info("CalculatorController.getSubstraction() start ");
+			log.info(Constants.TIME_ELAPSED,startTime);
 			CalculatorRequest calculatorRequest=prepareRequest(number1, number2);
 			calculatorResponse = calculatorServiceImpl.getSubstraction(calculatorRequest);
-			logger.info("CalculatorController.getSubstraction() End");
-			logger.info(Constants.TIME_ELAPSED,System.currentTimeMillis()-startTime);
+			log.info("CalculatorController.getSubstraction() End");
+			log.info(Constants.TIME_ELAPSED,System.currentTimeMillis()-startTime);
 			return calculatorResponse;
 		}
 		@GetMapping(value = "/multiplication")
@@ -75,12 +71,12 @@ public class CalculatorController {
 		{
 			CalculatorResponse calculatorResponse;
 			long startTime=System.currentTimeMillis();
-			logger.info("CalculatorController.getmultiplication() start ");
-			logger.info(Constants.TIME_ELAPSED,startTime);
+			log.info("CalculatorController.getmultiplication() start ");
+			log.info(Constants.TIME_ELAPSED,startTime);
 			CalculatorRequest calculatorRequest=prepareRequest(number1, number2);
 			calculatorResponse = calculatorServiceImpl.getMultiplication(calculatorRequest);
-			logger.info("CalculatorController.getmultiplication() End");
-			logger.info(Constants.TIME_ELAPSED,System.currentTimeMillis()-startTime);
+			log.info("CalculatorController.getmultiplication() End");
+			log.info(Constants.TIME_ELAPSED,System.currentTimeMillis()-startTime);
 			return calculatorResponse;
 		}
 		@GetMapping(value = "/division")
@@ -90,12 +86,12 @@ public class CalculatorController {
 		{
 			CalculatorResponse calculatorResponse;
 			long startTime=System.currentTimeMillis();
-			logger.info("CalculatorController.getDivision() start ");
-			logger.info(Constants.TIME_ELAPSED,startTime);
+			log.info("CalculatorController.getDivision() start ");
+			log.info(Constants.TIME_ELAPSED,startTime);
 			CalculatorRequest calculatorRequest=prepareRequest(number1, number2);
 			calculatorResponse = calculatorServiceImpl.getDivision(calculatorRequest);
-			logger.info("CalculatorController.getDivision() End");
-			logger.info(Constants.TIME_ELAPSED,System.currentTimeMillis()-startTime);
+			log.info("CalculatorController.getDivision() End");
+			log.info(Constants.TIME_ELAPSED,System.currentTimeMillis()-startTime);
 			return calculatorResponse;
 			
 		}
@@ -106,11 +102,11 @@ public class CalculatorController {
 		{
 			CalculatorResponse calculatorResponse;
 			long startTime=System.currentTimeMillis();
-			logger.info("CalculatorController.getSquare() start ");
-			logger.info(Constants.TIME_ELAPSED,startTime);
+			log.info("CalculatorController.getSquare() start ");
+			log.info(Constants.TIME_ELAPSED,startTime);
 			calculatorResponse = calculatorServiceImpl.getSquare(number);
-			logger.info("CalculatorController.getSquare() End");
-			logger.info(Constants.TIME_ELAPSED,System.currentTimeMillis()-startTime);
+			log.info("CalculatorController.getSquare() End");
+			log.info(Constants.TIME_ELAPSED,System.currentTimeMillis()-startTime);
 			return calculatorResponse;
 		}
 		
@@ -120,11 +116,11 @@ public class CalculatorController {
 		{
 			CalculatorResponse calculatorResponse;
 			long startTime=System.currentTimeMillis();
-			logger.info("CalculatorController.getsquareroot() start ");
-			logger.info(Constants.TIME_ELAPSED,startTime);
+			log.info("CalculatorController.getsquareroot() start ");
+			log.info(Constants.TIME_ELAPSED,startTime);
 			calculatorResponse=calculatorServiceImpl.getSquareRoot(number);
-			logger.info("CalculatorController.getsquareroot() End");
-			logger.info(Constants.TIME_ELAPSED,System.currentTimeMillis()-startTime);
+			log.info("CalculatorController.getsquareroot() End");
+			log.info(Constants.TIME_ELAPSED,System.currentTimeMillis()-startTime);
 			return calculatorResponse;
 		}
 
@@ -134,13 +130,13 @@ public class CalculatorController {
 		{
 			CalculatorResponse calculatorResponse;
 			long startTime=System.currentTimeMillis();
-			logger.info("CalculatorController.getFactorial() start ");
-			logger.info(Constants.TIME_ELAPSED,startTime);
+			log.info("CalculatorController.getFactorial() start ");
+			log.info(Constants.TIME_ELAPSED,startTime);
 			
 			calculatorResponse= calculatorServiceImpl.getFactorial(number);
 			
-			logger.info("CalculatorController.getFactorial() End");
-			logger.info(Constants.TIME_ELAPSED,System.currentTimeMillis()-startTime);
+			log.info("CalculatorController.getFactorial() End");
+			log.info(Constants.TIME_ELAPSED,System.currentTimeMillis()-startTime);
 			return calculatorResponse;
 		}
 		
@@ -150,11 +146,11 @@ public class CalculatorController {
 		{
 			MinMaxResponse minMaxResponse;
 			long startTime=System.currentTimeMillis();
-			logger.info("CalculatorController.getminmax() start ");
-			logger.info(Constants.TIME_ELAPSED,startTime);
+			log.info("CalculatorController.getminmax() start ");
+			log.info(Constants.TIME_ELAPSED,startTime);
 			minMaxResponse = calculatorServiceImpl.getMinMax(minMaxRequest);
-			logger.info("CalculatorController.getminmax() End");
-			logger.info(Constants.TIME_ELAPSED,System.currentTimeMillis()-startTime);
+			log.info("CalculatorController.getminmax() End");
+			log.info(Constants.TIME_ELAPSED,System.currentTimeMillis()-startTime);
 			return minMaxResponse;
 		}
 		
