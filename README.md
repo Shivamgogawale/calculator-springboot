@@ -1,6 +1,6 @@
 # calculator-springboot
 > # 1. How to Run:
-    i]Take Clone of calculator-springboot repo or download directly.<br>
+    i]Take Clone of calculator-springboot repo or download directly.
     ii]Check class which have main() method.<br>
     iii]Run this class accordingly on IDE.<br>
 
